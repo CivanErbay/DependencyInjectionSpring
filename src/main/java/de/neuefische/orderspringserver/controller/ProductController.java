@@ -24,12 +24,14 @@ public class ProductController {
     }
 
     //METHODE 1 - StartsWith
+    //EXAMPLE http://localhost:8080/products/carr --> {"name":"Carrot","id":"4"}
     @GetMapping("{searchProduct}")
     public Product showProduct(@PathVariable() String searchProduct ) {
         return productService.getProduct(searchProduct);
     }
 
     //STATISCH nach ID
+    //EXAMPLE http://localhost:8080/products/find?id=2 -->{"name":"Pizza","id":"2"}
     @GetMapping("find")
     public Product getProductById(@RequestParam(name ="id",required = false) String id){
         return productService.getProductById(id);
