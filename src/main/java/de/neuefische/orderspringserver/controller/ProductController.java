@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping//*("products")*/
+@RequestMapping("products")
 public class ProductController {
 
     //Attribut
@@ -18,14 +18,21 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("products") //static Search Path
+    @GetMapping//static Search Path
     public ProductDb listProducts() {
         return productService.getProductDb();
     }
 
-    @GetMapping("{searchProduct}") //Dynamic Search Path -- NOT WORKING
+    //METHODE 1 - StartsWith
+    @GetMapping("{searchProduct}")
     public Product showProduct(@PathVariable() String searchProduct ) {
         return productService.getProduct(searchProduct);
+    }
+
+    //STATISCH nach ID
+    @GetMapping("find")
+    public Product getProductById(@RequestParam(name ="id",required = false) String id){
+        return productService.getProductById(id);
     }
 
 }

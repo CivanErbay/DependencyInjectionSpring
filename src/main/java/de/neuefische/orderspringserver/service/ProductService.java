@@ -28,7 +28,9 @@ public class ProductService {
         return productDb.showProduct(name);
     }
 
-
+    public Product getProductById(String id) {
+        return productDb.getProductById(id);
+    }
 
 
 }

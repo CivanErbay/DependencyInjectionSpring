@@ -32,7 +32,16 @@ public class ProductDb {
 
     public Product showProduct(String name) {
         for (int i = 0; i < products.size(); i++) {
-            if(products.get(i).getName().startsWith(name.toLowerCase())) {
+            if(products.get(i).getName().toLowerCase().startsWith(name.toLowerCase())) {
+                return products.get(i);
+            }
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+    
+    public Product getProductById(String id) {
+        for (int i = 0; i < products.size(); i++) {
+            if(products.get(i).getId().equals(id)) {
                 return products.get(i);
             }
         }
@@ -48,19 +57,9 @@ public class ProductDb {
         return false;
     }
 
-    /*public boolean checkOrder(Order order) {
-        for (int i = 0; i < products.size(); i++) {
-            if(products.get(i).getName().equals(order.getProducts().get(i).getName())) {
-                return true;
-            }
-        }
-        return false;
-    }*/
-
     public boolean checkOrder(Order order) {
         for (int i = 0; i < order.getProducts().size(); i++) {
             if(!checkProducts(order.getProducts().get(i).getId())) {
-      /*          throw new ResponseStatusException(HttpStatus.BAD_REQUEST);*/
             return false;
             }
         }
