@@ -5,6 +5,8 @@ import de.neuefische.orderspringserver.model.Product;
 import de.neuefische.orderspringserver.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("products")
@@ -19,8 +21,8 @@ public class ProductController {
     }
 
     @GetMapping//static Search Path
-    public ProductDb listProducts() {
-        return productService.getProductDb();
+    public List<Product> listProducts() {
+        return productService.getProducts();
     }
 
     //METHODE 1 - StartsWith

@@ -23,7 +23,7 @@ public class OrderController {
     }
 
   @GetMapping("orderlist")
-  public OrderDb listOrders() {
+  public List<Order> listOrders() {
       return orderService.listOrder();
   }
 
@@ -33,10 +33,13 @@ public class OrderController {
         return orderService.getOrderById(searchOrder);
   }
 
-  @PutMapping("addOrder")
-    public void addOrder(@RequestBody Order order) {
-       orderService.addOrder(order);
+  @PostMapping("addOrder")
+    public Order addOrder(@RequestBody Order order) {
+       return orderService.addOrder(order);
   }
+
+
+
     //addOrder JSON Format für PostMAN
    /* {
         "id":"1",

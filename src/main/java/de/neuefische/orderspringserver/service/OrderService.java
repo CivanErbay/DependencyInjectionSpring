@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class OrderService {
 
@@ -19,16 +21,16 @@ public class OrderService {
     }
 
     //Methoden
-    public OrderDb listOrder () {
-    return orderDb;
+    public List<Order> listOrder () {
+    return orderDb.getOrderList();
     }
 
-    public void addOrder(Order order) {
+    public Order addOrder(Order order) {
         //Check if Product is in ProductDB
         if (productDb.checkOrder(order)) {
             //If avaiable add product
             orderDb.addOrder(order);
-            return;
+            return order;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 

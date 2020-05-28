@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service        //Dependency Injection
 public class ProductService {
 
@@ -20,8 +22,8 @@ public class ProductService {
     }
 
     //Methoden
-    public ProductDb getProductDb () {
-        return productDb;
+    public List<Product> getProducts () {
+        return productDb.listProducts();
     }
 
     public Product getProduct(String name) {

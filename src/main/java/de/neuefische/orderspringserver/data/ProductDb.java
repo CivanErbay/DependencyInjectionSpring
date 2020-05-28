@@ -30,6 +30,7 @@ public class ProductDb {
         return products;
     }
 
+
     public Product showProduct(String name) {
         for (int i = 0; i < products.size(); i++) {
             if(products.get(i).getName().toLowerCase().startsWith(name.toLowerCase())) {
